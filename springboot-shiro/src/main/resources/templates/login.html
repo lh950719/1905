@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet"
+          href="../js/EasyUI/themes/default/easyui.css" type="text/css"/>
+
+    <!-- 引入EasyUI的图标样式文件-->
+    <link rel="stylesheet"
+          href="../js/EasyUI/themes/icon.css" type="text/css"/>
+</head>
+<body>
+<div id="login-div">
+    <form id="login_form" method="post" action="/login">
+
+        用户名：
+        <input class="easyui-textbox" name="username" style="width:100px"><br>
+
+
+        密码：
+        <input class="easyui-textbox" name="password" style="width:100px"><br>
+
+
+        <br>
+        <div th:text="${msg}"></div>
+    </form>
+</div>
+
+<script type="text/javascript" src="../js/EasyUI/jquery.min.js"></script>
+
+<script type="text/javascript" src="../js/EasyUI/jquery.easyui.min.js"></script>
+
+<script type="text/javascript" src="../js/EasyUI/locale/easyui-lang-zh_CN.js"></script>
+<script>
+    $(function () {
+        $('#login-div').dialog({
+            title: '登录',
+            width: 400,
+            height: 200,
+            closed: false,
+            cache: false,
+            modal: true,
+            buttons:[{
+                text:'保存',
+                handler:function(){
+                    $('#login_form').form('submit', {
+                        url:'/login',
+                        onSubmit: function(){
+
+                        },
+                        success:function(data){
+                            alert("登录成功");
+                            location.href = '/index';
+                        }
+                    });
+                }
+            },{
+                text:'关闭',
+                handler:function(){
+
+                }
+            }]
+
+        });
+    })
+</script>
+</body>
+</html>

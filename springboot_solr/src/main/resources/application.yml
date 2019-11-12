@@ -1,0 +1,12 @@
+
+spring:
+  data:
+    solr:
+      host: http://127.0.0.1:8080/solr
+    thymeleaf:
+      cache: false
+      mode: LEGACYHTML5
+      prefix: classpath:/templates/
+      suffix: .html
+server:
+  port: 8081

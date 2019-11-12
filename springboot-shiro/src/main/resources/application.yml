@@ -1,0 +1,18 @@
+
+#
+server:
+  port: 8080
+mybatis:
+  config-locations: classpath:mapping/confg.xml
+  mapper-locations: classpath:mapping/mapper/*.xml
+  type-aliases-package: com.jk.model
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    password: 123
+    url: jdbc:mysql://localhost:3306/1905bb?useUnicode=true&characterEncoding=utf-8
+    username: root
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html

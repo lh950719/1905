@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet"
+          href="../js/EasyUI/themes/default/easyui.css" type="text/css"/>
+
+    <!-- 引入EasyUI的图标样式文件-->
+    <link rel="stylesheet"
+          href="../js/EasyUI/themes/icon.css" type="text/css"/>
+</head>
+<body>
+<form id="search-form">
+    关键字：<input placeholder="请输入关键字" class="easyui-textbox" style="width:150px" id="carname">
+    <a id="search-button"  class="easyui-linkbutton">搜索</a>
+</form>
+<table id="show_car"></table>
+<script type="text/javascript" src="../js/EasyUI/jquery.min.js"></script>
+
+<script type="text/javascript" src="../js/EasyUI/jquery.easyui.min.js"></script>
+
+<script type="text/javascript" src="../js/EasyUI/locale/easyui-lang-zh_CN.js"></script>
+<script>
+    $(function () {
+        search();
+    })
+    function search() {
+        $('#show_car').datagrid({
+            url:'../solr/searchCar',
+            fitColumns:true,
+            striped:true,
+            ctrlSelect:true,
+            method:"post",
+            loadMsg:"数据库加载中。。。。。。。。。。。。。。。。。。",
+            pagination:true,
+            pagePosition:"bottom",
+            queryParams:{
+                "carname":$("#carname").val()
+            }
+            ,
+            pageSize:3,
+            pageList:[1,3,5],
+            columns:[
+                [
+                    {field:'carid',title:'汽车编号',width:100},
+                    {field:'carname',title:'汽车名称',width:100},
+                    {field:'carsales',title:'销量',width:100},
+                    {field:'cartime',title:'出厂日期',width:100,align:'right'},
+                    {field:'cartype',title:'类型',width:100,align:'right'}
+
+
+                ]
+            ]
+
+        });
+    }
+
+    $(function () {
+        $("#search-button").linkbutton({
+            onClick:function () {
+                search();
+            }
+        })
+    })
+</script>
+</body>
+</html>
